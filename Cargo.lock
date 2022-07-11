@@ -1972,9 +1972,7 @@ version = "0.2.0"
 dependencies = [
  "bn-rs",
  "bytes",
- "getrandom 0.2.7",
  "hex",
- "js-sys",
  "primitive-types 0.11.1",
  "revm",
  "wasm-bindgen",
