@@ -3,7 +3,8 @@ use num_enum::TryFromPrimitive;
 use revm_precompiles::SpecId as PrecompileId;
 
 #[repr(u8)]
-#[derive(Debug, Copy, Clone, TryFromPrimitive, Eq, PartialEq, Hash, Ord, PartialOrd)]
+#[derive(Copy, Clone, TryFromPrimitive, Eq, PartialEq, Hash, Ord, PartialOrd)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug,))]
 #[cfg_attr(feature = "with-serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(non_camel_case_types)]
 pub enum SpecId {

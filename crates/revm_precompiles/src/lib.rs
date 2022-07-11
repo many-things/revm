@@ -29,14 +29,14 @@ pub fn gas_query(gas_used: u64, gas_limit: u64) -> Result<u64, Return> {
     Ok(gas_used)
 }
 
-#[derive(Debug)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug))]
 pub struct PrecompileOutput {
     pub cost: u64,
     pub output: Vec<u8>,
     pub logs: Vec<Log>,
 }
 
-#[derive(Debug, Default)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug, Default))]
 pub struct Log {
     pub address: Address,
     pub topics: Vec<H256>,

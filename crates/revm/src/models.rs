@@ -11,7 +11,8 @@ pub const KECCAK_EMPTY: H256 = H256([
 ]);
 
 /// AccountInfo account information.
-#[derive(Clone, Eq, PartialEq, Debug)]
+#[derive(Clone, Eq, PartialEq)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug))]
 #[cfg_attr(feature = "with-serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct AccountInfo {
     /// Account balance.
@@ -97,7 +98,8 @@ pub struct CreateInputs {
 
 pub struct CreateData {}
 
-#[derive(Clone, Debug)]
+#[derive(Clone)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug))]
 #[cfg_attr(feature = "with-serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum TransactTo {
     Call(H160),
@@ -110,7 +112,7 @@ impl TransactTo {
     }
 }
 
-#[derive(Debug)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug))]
 #[cfg_attr(feature = "with-serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum TransactOut {
     None,
@@ -123,7 +125,8 @@ pub enum TransactOut {
 }
 
 /// Create scheme.
-#[derive(Clone, Copy, Eq, PartialEq, Debug)]
+#[derive(Clone, Copy, Eq, PartialEq)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug))]
 #[cfg_attr(feature = "with-serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum CreateScheme {
     /// Legacy create scheme of `CREATE`.
@@ -136,7 +139,8 @@ pub enum CreateScheme {
 }
 
 /// Call schemes.
-#[derive(Clone, Copy, Eq, PartialEq, Debug)]
+#[derive(Clone, Copy, Eq, PartialEq)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug))]
 #[cfg_attr(feature = "with-serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum CallScheme {
     /// `CALL`
@@ -150,7 +154,8 @@ pub enum CallScheme {
 }
 
 /// CallContext of the runtime.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug,))]
 #[cfg_attr(feature = "with-serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct CallContext {
     /// Execution address.
@@ -177,14 +182,17 @@ impl Default for CallContext {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Clone, Default)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug))]
 #[cfg_attr(feature = "with-serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Env {
     pub cfg: CfgEnv,
     pub block: BlockEnv,
     pub tx: TxEnv,
 }
-#[derive(Clone, Debug, Eq, PartialEq)]
+
+#[derive(Clone, Eq, PartialEq)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug,))]
 #[cfg_attr(feature = "with-serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct BlockEnv {
     pub number: U256,
@@ -198,7 +206,8 @@ pub struct BlockEnv {
     pub gas_limit: U256,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug))]
 #[cfg_attr(feature = "with-serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct TxEnv {
     /// Caller or Author or tx signer
@@ -214,7 +223,8 @@ pub struct TxEnv {
     pub nonce: Option<u64>,
     pub access_list: Vec<(H160, Vec<U256>)>,
 }
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Eq, PartialEq)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug,))]
 #[cfg_attr(feature = "with-serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct CfgEnv {
     pub chain_id: U256,
@@ -288,7 +298,8 @@ impl Env {
 }
 
 /// Transfer from source to target, with given value.
-#[derive(Clone, Debug)]
+#[derive(Clone)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug))]
 #[cfg_attr(feature = "with-serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Transfer {
     /// Source address.
@@ -299,7 +310,8 @@ pub struct Transfer {
     pub value: U256,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug,))]
 #[cfg_attr(feature = "with-serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Log {
     pub address: H160,

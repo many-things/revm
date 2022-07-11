@@ -8,7 +8,8 @@ use primitive_types::{H160, H256, U256};
 
 use crate::{db::Database, AccountInfo, Log};
 
-#[derive(Debug, Clone)]
+#[derive(Clone)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug))]
 pub struct SubRoutine {
     /// Applied changes to our state
     pub state: State,
@@ -31,7 +32,8 @@ pub struct SubRoutine {
 // acc.filth contains previous change
 //pub type ChangeLog = Map<H160, Option<(Account, Map<H256, SlotChangeLog>)>>;
 
-#[derive(Debug, Clone)]
+#[derive(Clone)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug,))]
 pub enum ChangeLog {
     ColdLoaded,
     Dirty(DirtyChangeLog),
@@ -45,7 +47,8 @@ pub enum ChangeLog {
     PrecompileBalanceChange(U256, bool), //TODO add it to balance change
 }
 
-#[derive(Debug, Clone)]
+#[derive(Clone)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug))]
 pub struct DirtyChangeLog {
     // contains previous values of slot.
     // If it is cold loaded in this subroutine SlotChangeLog will be COLD.
@@ -58,7 +61,8 @@ pub struct DirtyChangeLog {
 
 pub type State = Map<H160, Account>;
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug,))]
 pub enum SlotChangeLog {
     Cold,
     OriginalDirty(U256),
@@ -615,7 +619,8 @@ impl SubRoutine {
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Clone)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug,))]
 pub struct Account {
     /// Balance of the account.
     pub info: AccountInfo,
@@ -644,7 +649,8 @@ impl From<AccountInfo> for Account {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug))]
 pub enum Filth {
     /// clean load from db
     Clean,

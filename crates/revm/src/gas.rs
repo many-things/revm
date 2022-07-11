@@ -6,7 +6,8 @@ pub use constants::*;
 
 use crate::{instructions::Return, return_ok, return_revert};
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug))]
 pub struct Gas {
     limit: u64,
     used: u64,

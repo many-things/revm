@@ -23,7 +23,8 @@ impl InMemoryDB {
 }
 
 /// Memory backend, storing all state values in a `Map` in memory.
-#[derive(Debug, Clone)]
+#[derive(Clone)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug))]
 pub struct CacheDB<ExtDB: DatabaseRef> {
     /// Dummy account info where `code` is always `None`.
     /// Code bytes can be found in `contracts`.
@@ -34,7 +35,8 @@ pub struct CacheDB<ExtDB: DatabaseRef> {
     pub db: ExtDB,
 }
 
-#[derive(Debug, Clone, Default)]
+#[derive(Clone, Default)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug,))]
 pub struct DbAccount {
     pub info: AccountInfo,
     /// If account is selfdestructed or newly created, storage will be cleared.
@@ -43,7 +45,8 @@ pub struct DbAccount {
     pub storage: BTreeMap<U256, U256>,
 }
 
-#[derive(Debug, Clone, Default)]
+#[derive(Clone, Default)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug,))]
 pub enum AccountState {
     /// EVM touched this account
     EVMTouched,
@@ -248,7 +251,8 @@ impl<ExtDB: DatabaseRef> DatabaseRef for CacheDB<ExtDB> {
 }
 
 /// An empty database that always returns default values when queried.
-#[derive(Debug, Default, Clone)]
+#[derive(Default, Clone)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug,))]
 pub struct EmptyDB();
 
 impl DatabaseRef for EmptyDB {
@@ -276,7 +280,8 @@ impl DatabaseRef for EmptyDB {
 /// Custom benchmarking DB that only has account info for the zero address.
 ///
 /// Any other address will return an empty account.
-#[derive(Debug, Default, Clone)]
+#[derive(Default, Clone)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug,))]
 pub struct BenchmarkDB(pub Bytes);
 
 impl Database for BenchmarkDB {

@@ -1,6 +1,7 @@
 use alloc::borrow::Cow;
 
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Eq, PartialEq)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug,))]
 pub enum Return {
     Exit,
     OutOfGas,

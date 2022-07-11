@@ -168,7 +168,7 @@ impl OpCode {
         self.0
     }
 }
-#[derive(Debug)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug))]
 pub struct OpInfo {
     pub gas: u64,
     pub is_jump: bool,

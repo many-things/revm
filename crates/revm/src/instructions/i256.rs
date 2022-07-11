@@ -1,7 +1,8 @@
 use core::cmp::Ordering;
 use primitive_types::U256;
 
-#[derive(Copy, Clone, Eq, PartialEq, Debug)]
+#[derive(Copy, Clone, Eq, PartialEq)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug))]
 pub enum Sign {
     Plus,
     Minus,
@@ -24,7 +25,8 @@ pub const MIN_NEGATIVE_VALUE: U256 = U256([
 
 const SIGN_BITMASK_U64: u64 = 0x8000000000000000;
 const FLIPH_BITMASK_U64: u64 = 0x7FFFFFFFFFFFFFFF;
-#[derive(Copy, Clone, Eq, PartialEq, Debug)]
+#[derive(Copy, Clone, Eq, PartialEq)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug))]
 pub struct I256(pub Sign, pub U256);
 
 #[inline(always)]

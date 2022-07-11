@@ -21,14 +21,16 @@ pub struct Contract {
     jumpdest: ValidJumpAddress,
 }
 
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[derive(Clone, Copy, Eq, PartialEq)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug,))]
 pub enum Analysis {
     JumpDest,
     GasBlockEnd, //contains gas for next block
     None,
 }
 
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[derive(Clone, Copy, Eq, PartialEq)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug,))]
 pub struct AnalysisData {
     pub is_jumpdest: bool,
     pub gas_block: u64,
@@ -179,7 +181,8 @@ impl Contract {
 }
 
 /// Mapping of valid jump destination from code.
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Eq, PartialEq)]
+#[cfg_attr(not(feature = "no-derive"), derive(Debug,))]
 pub struct ValidJumpAddress {
     first_gas_block: u64,
     analysis: Vec<AnalysisData>,
